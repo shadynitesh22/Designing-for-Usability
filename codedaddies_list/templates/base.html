@@ -1,10 +1,189 @@
-<!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Craigslist Search </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
+
 <body>
-$END$
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo"><i class="material-icons">cloud</i> Craigslist Search</a>
+
+      <ul class="right hide-on-med-and-down">
+            <a class='dropdown-trigger btn waves-cyan darken-4'href='#' data-target='dropdown2'>Language</a>
+
+  <ul id='dropdown2' class='dropdown-content'>
+    <li><a href="#!">English</a></li>
+      <li class="divider" tabindex="-1"></li>
+    <li><a href="#!">Indian</a></li>
+         <li><a href="#!">Spanish</a></li>
+         <li><a href="#!">Chinese</a></li>
+         <li><a href="#!">Italian</a></li>
+
+
+  </ul>
+
+
+      <a class='dropdown-trigger btn waves-cyan darken-4' href='#' data-target='dropdown1'>Post</a>
+
+
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a href="https://accounts.craigslist.org/login?rp=%2Flogin%2Fhome&rt=L">Log-in</a></li>
+      <li class="divider" tabindex="-1"></li>
+    <li><a href="https://post.craigslist.org/k/8J0WU0zP6hGnF9OQEv-Wng/j7mG4?s=subarea">Create a posting</a></li>
+          <li><a href="https://www.craigslist.org/about/">About us</a></li>
+          <li><a href="https://www.craigslist.org/about/help/">Help/FaQ</a></li>
+
+
+  </ul>
+
+      </ul>
+    </div>
+  </nav>
+<div class="container">
+    <h1 style="text-align: center">What do you want to search for on Craigslist Search?</h1>
+    <div class="row">
+        <div class="col s4">
+
+            <div class="center">
+                <i class="large material-icons" style="color: #EE6E73">flash_on</i>
+                <p>Fast craigslist web scraper</p>
+                <p class="light center">Scrape away right here with a beautiful GUI.</p>
+            </div>
+        </div>
+
+        <div class="col s4">
+
+            <div class="center">
+                <i class="large material-icons" style="color: orange">camera</i>
+                <p>Filter your searches</p>
+                <p class="light center">We built in functionality to filter based on pricing.</p>
+            </div>
+        </div>
+
+        <div class="col s4">
+
+            <div class="center">
+                <i class="large material-icons" style="color: blue">chrome_reader_mode</i>
+                <p>A much sexier front-end to Craigslist</p>
+                <p class="light center">We built this with ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'new_search' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="search">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+ <ul class="collapsible popout">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">house</i>Housing</div>
+      <div class="collapsible-body"><span>Buy or sell house.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Community</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">build</i>Services</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+      <li>
+      <div class="collapsible-header"><i class="material-icons">shopping_cart</i>Sales</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+        <li>
+      <div class="collapsible-header"><i class="material-icons">business_center</i>Jobs</div>
+      <div class="collapsible-body"><span >Lorem ipsum dolor sit amet.</span></div>
+    </li>
+          <li>
+      <div class="collapsible-header"><i class="material-icons">article</i>Gigs</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+          <li>
+      <div class="collapsible-header"><i class="material-icons">book</i>Resumes</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul>
+    <br>
+            <label>Event Picker </label>
+  <a class="btn-floating btn-large waves-effect waves-light red"><i class="datepicker"><i class="material-icons">add</i></i></a>
+    <br>
+    <br>
+ <div class="input-field col s12">
+    <select>
+      <option value="" disabled selected>Choose your Location</option>
+      <option value="1">Current Country</option>
+      <option value="2">Asia/Pacafic</option>
+      <option value="3">Cl/Worldwide</option>
+
+    </select>
+    <label>Location <i class="material-icons  green-text accent-3">my_location</i></label>
+  </div>
+    <br>
+    <br>
+    {% block content %}
+
+    {% endblock content %}
+</div>
+  <br>
+  <br>
+  <br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $('select').formSelect();
+  });
+
+$('.dropdown-trigger').dropdown();
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+        </script>
+
 </body>
+
+
+
+        <footer class="page-footer">
+            <div class="col l4 offset-l2 s12">
+                  <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Help</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Saftey</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Privacy</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Feedback</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
+                </ul>
+              </div>
+            </div>
+          <div class="footer-copyright">
+
+            ©2020 Craigslist
+              All rights reversed
+              Demo created by Nitesh-Paudel
+
+            <a class="grey-text text-lighten-4 right" href="#!">Terms and conditions</a>
+
+            </div>
+          </div>
+        </footer>
+
 </html>
